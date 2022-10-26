@@ -1,29 +1,37 @@
 import 'package:flutter/rendering.dart';
 import 'package:meta/dart2js.dart';
-
+import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatelessWidget {
+class Taskpage extends StatelessWidget {
+  bool? isChecked = false;
   @override
   Widget build(BuildContext context) {
     return Material(
         color: Colors.white,
         child: Column(
+         // crossAxisAlignment: CrossAxisAlignment.start,
+          
           children: [
             Image.asset(
               "assets/images/login_image.png",
               fit: BoxFit.cover,
             ),
-            Text(
-              'Welcome Back!',
-              textAlign: TextAlign.left,
-              style: TextStyle(
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
+            Container(
+              width: 414,
+              height: 56,
+              padding: EdgeInsets.only(left: 11, top: 6, bottom: 6),
+              child: Text(
+                'Welcome Back!',
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
             SizedBox(
-              height: 35,
+              height: 20,
             ),
             Padding(
               padding: const EdgeInsets.only(left: 15.0, right: 15.0),
@@ -38,7 +46,7 @@ class LoginPage extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: 25,
+              height: 15,
             ),
             Padding(
               padding: const EdgeInsets.only(left: 15.0, right: 15.0),
@@ -53,7 +61,40 @@ class LoginPage extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: 25,
+              height: 5,
+            ),
+            Row(
+              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 5),
+                  child: Checkbox(
+                      value: isChecked,
+                      activeColor: Colors.black,
+                      tristate: true,
+                      onChanged: (newbool) {
+                        SetState() {
+                          isChecked = newbool;
+                        }
+                      }),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(right: 20),
+                  child: Text('Remember me'),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 100),
+                  child: TextButton(
+                      onPressed: () {},
+                      child: Text(
+                        'Forgot Password?',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      )),
+                )
+              ],
+            ),
+            SizedBox(
+              height: 10,
             ),
             Padding(
               padding: const EdgeInsets.only(left: 15, right: 15),
@@ -68,27 +109,24 @@ class LoginPage extends StatelessWidget {
                     filled: true),
               ),
             ),
-            SizedBox(height: 10),
-            Padding(
-              padding: const EdgeInsets.only(left:265),
-              child: Row(
-                children: [
-                  TextButton(onPressed: (){}, child: Text(
-                    'Forgot Password?',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold
-                    ),
-                  ))
-                ],
-              ),
+            TextButton(onPressed: () {}, child: Text('Continue by using')),
+            Column(
+              children: [
+                SignInButton(Buttons.Google, onPressed: () {}),
+                SignInButton(Buttons.Facebook, onPressed: () {}),
+              ],
             ),
+            // Column(
+            //   children: [
+            //     Image.asset("assets/google_image.png", height: 10,width: 10,)
+            //   ],
+            // ),
             SizedBox(
-              height: 150,
+              height:39,
             ),
             Padding(
               padding: const EdgeInsets.only(left: 105),
               child: Row(
-             
                 children: [
                   TextButton(
                       onPressed: () {}, child: Text('create an account?')),
@@ -96,8 +134,9 @@ class LoginPage extends StatelessWidget {
                       onPressed: () {},
                       child: Text(
                         'Sign Up',
-                        style: TextStyle(fontWeight: FontWeight.bold,
-                        decoration: TextDecoration.underline),
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            decoration: TextDecoration.underline),
                       ))
                 ],
               ),
